@@ -1,0 +1,32 @@
+#!/bin/bash -f
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    runid=`expr $SGE_TASK_ID`
+  fi
+else
+  runid=$1
+fi
+
+numpertask=${NUM_PER_TASK}
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="${SIMOUT_PATH}/${A200Anlys_TARGET_JOB_NAME}"
+datadir="$sourcedir/root"
+
+target_run=`awk NR==$runid ./rerun_target`
+nrun=$target_run
+
+informat="amorepilot_muon-run%d.root"
+
+outdir="$sourcedir/output"
+output="$outdir/$nrun.txt"
+
+
+# For EffiAnlys
+${PROJECT_BINARY_DIR}/EffiAnlys $nrun "$datadir" "$informat" "$outdir" $numpertask&>$output
+
+exit

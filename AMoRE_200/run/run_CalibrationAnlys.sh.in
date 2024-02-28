@@ -1,0 +1,30 @@
+#!/bin/bash -f
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    nrun=`expr $SGE_TASK_ID - 1`
+  fi
+else
+  nrun=$1
+fi
+
+source @ROOT_BINARY_DIR@/thisroot.sh
+
+numpertask=${NUM_PER_TASK}
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="${SIMOUT_PATH}/calibration"
+datadir="$sourcedir/root"
+
+informat="amore2_calibration_Th232-run%d_100000*.root"
+
+outdir="$sourcedir/output"
+output="$outdir/$nrun.txt"
+
+${PROJECT_BINARY_DIR}/Calibration_200 $nrun "$datadir" "$informat" "$outdir" $numpertask&>$output
+
+exit

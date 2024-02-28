@@ -1,0 +1,19 @@
+#!/bin/bash -f
+#SBATCH -J repro
+#SBATCH -N 1
+##SBATCH -n 5
+##SBATCH --mincpus=1
+#SBATCH -p jepyc_c
+#SBATCH -a 0-39
+
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+workdir="${PROJECT_BINARY_DIR}/AMoRE_I/run"
+cd $workdir
+
+irun=`expr $SLURM_ARRAY_TASK_ID + 1000`
+./run_InternalAnlys.sh $SLURM_ARRAY_TASK_ID
+
+date
+exit
+

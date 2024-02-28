@@ -1,0 +1,38 @@
+#!/bin/bash -f
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    nrun=`expr $SGE_TASK_ID - 1`
+  fi
+else
+  nrun=$1
+fi
+
+numpertask=${NUM_PER_TASK}
+
+sname="U238"
+depth="5nm"
+crystal="sb28"
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="${SIMOUT_PATH}/pilot/mona_surface"
+datadir="$sourcedir/$crystal/$sname/$depth"
+
+informat="amorepilot_decay_$sname-run%d.root"
+
+outdir="$sourcedir/$crystal/$sname/$depth"
+output="$outdir/Surface_$nrun.txt"
+
+echo $sname
+echo $depth
+echo $crystal
+echo $informat
+
+${PROJECT_BINARY_DIR}/SurfaceAlpha_Pilot $nrun "$datadir" "$informat" "$outdir" $numpertask "$sname" &>$output
+
+exit
+

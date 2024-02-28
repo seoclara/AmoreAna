@@ -1,0 +1,30 @@
+#!/bin/bash -f
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    nrun=`expr $SGE_TASK_ID - 1`
+  fi
+else
+  nrun=$1
+fi
+
+numpertask=${NUM_PER_TASK}
+setup="real_v2_LMO"
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="/proj/internal_group/cup_mc/SIMULATION_DATA/AMoRE-II/neut/$setup"
+datadir="$sourcedir/root"
+
+informat="amore2_neut-run%d_1000000.root"
+
+outdir="/proj/internal_group/cup_mc/USERS/JEEWON_WORK/scratch/amoreII/neut/repro/v1"
+output="$outdir/$nrun.txt"
+
+# For NeutAnlys
+${PROJECT_BINARY_DIR}/NeutAnlys_200 $nrun "$datadir" "$informat" "$outdir" $numpertask&>$output
+
+exit

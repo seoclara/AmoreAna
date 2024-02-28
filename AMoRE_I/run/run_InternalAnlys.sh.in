@@ -1,0 +1,36 @@
+#!/bin/bash -f
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    nrun=`expr $SGE_TASK_ID - 1`
+  fi
+else
+  nrun=$1
+fi
+
+numpertask=${NUM_PER_TASK}
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="${SIMOUT_PATH}/internal-bulk"
+datadir="$sourcedir/root"
+
+sname="U238"
+crystal="CMO"
+
+informat="amoreI_"$crystal"_"$sname"-run%d_100000*.root"
+
+outdir="$sourcedir/output"
+output="$outdir/log/"$crystal"_"$sname"_"$nrun".txt"
+
+echo $sname
+echo $crystal
+echo $informat
+
+${PROJECT_BINARY_DIR}/Internal_I $nrun "$datadir" "$informat" "$outdir" $numpertask "$sname" "$crystal"&>$output
+
+exit
+

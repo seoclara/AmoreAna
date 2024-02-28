@@ -1,0 +1,28 @@
+#!/bin/bash -f
+source /mnt/lustre/ibs/jeewon/olaf_setup/cupsim_v1073.sh
+
+if [ "x$1" = "x" ]; then
+  if [ "x$SGE_TASK_ID" = "x" ]; then
+    echo "WRONG CONFIGURATION"
+    exit
+  else
+    nrun=`expr $SGE_TASK_ID - 1`
+  fi
+else
+  nrun=$1
+fi
+
+numpertask=${NUM_PER_TASK}
+
+workdir="${PROJECT_BINARY_DIR}"
+sourcedir="${SIMOUT_PATH}/${PilotAnlys_TARGET_JOB_NAME}"
+datadir="$sourcedir/root"
+
+informat="amorepilot_neut-run%d.root"
+
+outdir="$sourcedir/output"
+output="$outdir/$nrun.txt"
+
+${PROJECT_BINARY_DIR}/NeutAnlys_Pilot $nrun "$datadir" "$informat" "$outdir" $numpertask&>$output
+
+exit
