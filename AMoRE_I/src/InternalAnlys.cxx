@@ -232,10 +232,10 @@ void InternalAnlys(Int_t runno, const char *path, const char *filenameformat, co
 				const char *crystalName      = strtok(buffer, "_");
 				const char *crystalNumberStr = strtok(NULL, "_");
 				int crystalNumber    = atoi(crystalNumberStr);
-				int realchannel = realChannelList[crystalNumber];
-				if(strcmp(crystalNameList[realchannel], crystalName) == 0){
-					//cmonum = crystalNumber;
-					cmonum = realchannel;
+				//int realchannel = realChannelList[crystalNumber];
+				if(strcmp(crystalNameList[crystalNumber], crystalName) == 0){
+					cmonum = crystalNumber;
+					//cmonum = realchannel;
 				} 
 
 				Double_t nowEdep = readSingleStep->GetEnergyDeposit();
@@ -295,6 +295,7 @@ void InternalAnlys(Int_t runno, const char *path, const char *filenameformat, co
 		multipleHitTag = false;
 
 		for(int ic = 0; ic < max_ncrystals; ic++){
+			//int daq_id = realChannelList[ic];
 			DetectorModule_Amore &readSingleModule = readMDArray->GetDetectorModule(ic);
 			crystalMass[ic] = crystalMassList[ic];
 			crystalEdep[ic] = readSingleModule.GetCrystalEdep();
