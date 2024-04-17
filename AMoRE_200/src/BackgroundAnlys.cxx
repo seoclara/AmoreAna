@@ -23,7 +23,8 @@ void BackgroundAnlys(Int_t runno, const char *path, const char *filenameformat, 
 	for (int i = runno * numpertask; i < (runno + 1) * numpertask; i++)
 	{
 		cout << "Adding: " << i + 1 << endl;
-		fInput->Add(Form(Form("%s/%s", path, filenameformat), i));
+		fInput->Add(Form(Form("%s/%s.root", path, filenameformat), i));
+		// fInput->Add(Form(Form("%s/%s_1.root", path, filenameformat), i));
 	}
 
 	///// Set input reader variables -----------------------
