@@ -229,6 +229,7 @@ void InternalAnlys(Int_t runno, const char *path, const char *filenameformat, co
 					cmonum = 17;
 				}
 				strncpy(buffer, volName, volNameLength - checkerLength);
+				//cout << "volumename:" << volName << endl;
 				const char *crystalName      = strtok(buffer, "_");
 				const char *crystalNumberStr = strtok(NULL, "_");
 				int crystalNumber    = atoi(crystalNumberStr);
@@ -237,6 +238,14 @@ void InternalAnlys(Int_t runno, const char *path, const char *filenameformat, co
 					cmonum = crystalNumber;
 					//cmonum = realchannel;
 				} 
+				else if (strstr(volName,"LMO_CUP")){
+					cmonum = 9;
+					crystalName = "LMO_CUP";
+				}
+				//cout << "crystalName: " << crystalName << endl;
+				//cout << "crystalNumberStr: " << crystalNumberStr << endl;
+				//cout << "crystal number: " << crystalNumber << endl;
+				//cout << "cmonum: " << cmonum << endl;
 
 				Double_t nowEdep = readSingleStep->GetEnergyDeposit();
 				if(nowEdep > 0.){
