@@ -17,7 +17,7 @@ source @ROOT_BINARY_DIR@/thisroot.sh
 numpertask=${NUM_PER_TASK}
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/${A200Anlys_TARGET_JOB_NAME}"
+sourcedir="${workdir}/${A200Anlys_TARGET_JOB_NAME}"
 datadir="$sourcedir/root"
 
 informat="amore2_muon-run%d.root"

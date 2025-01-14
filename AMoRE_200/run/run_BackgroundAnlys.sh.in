@@ -18,7 +18,7 @@ isotop="Th232"
 mode="decay"
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}"
+sourcedir="${workdir}"
 datadir="$sourcedir/root"
 
 informat="amore2_decay_$isotop-run%d.root"

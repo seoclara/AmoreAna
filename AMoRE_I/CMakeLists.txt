@@ -39,14 +39,6 @@ else()
     message(SEND_ERROR "This project cannot be built without MCAnlysInfo library. Please check about this.")
 endif()
 
-#----------------------------------------------------------------------------
-# Check SIMOUT_PATH environment variables which are need to configure run scripts.
-#----------------------------------------------------------------------------
-if(NOT DEFINED ENV{SIMOUT_PATH})
-    message(SEND_ERROR "Environment variable SIMOUT_PATH is not defined. Configure will not make progress")
-endif()
-
-set(SIMOUT_PATH $ENV{SIMOUT_PATH})
 
 #----------------------------------------------------------------------------
 # Add variables for run scripts

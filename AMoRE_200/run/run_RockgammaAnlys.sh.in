@@ -17,7 +17,7 @@ isotop="Th232"
 crystal="LMO"
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/amoreII"
+sourcedir="${workdir}/amoreII"
 datadir="$sourcedir/root"
 
 informat="amore2_decay_$isotop-run%d.root"

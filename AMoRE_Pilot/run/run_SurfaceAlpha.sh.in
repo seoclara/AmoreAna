@@ -19,7 +19,7 @@ depth="5nm"
 crystal="sb28"
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/pilot/mona_surface"
+sourcedir="${workdir}/pilot/mona_surface"
 datadir="$sourcedir/$crystal/$sname/$depth"
 
 informat="amorepilot_decay_$sname-run%d.root"

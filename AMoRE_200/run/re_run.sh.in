@@ -14,7 +14,7 @@ fi
 numpertask=${NUM_PER_TASK}
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/${A200Anlys_TARGET_JOB_NAME}"
+sourcedir="${workdir}/${A200Anlys_TARGET_JOB_NAME}"
 datadir="$sourcedir/root"
 
 target_run=`awk NR==$runid ./rerun_target`

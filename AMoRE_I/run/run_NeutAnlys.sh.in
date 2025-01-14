@@ -15,7 +15,7 @@ fi
 numpertask=${NUM_PER_TASK}
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/${IAnlys_TARGET_JOB_NAME}"
+sourcedir="${workdir}/${IAnlys_TARGET_JOB_NAME}"
 datadir="$sourcedir/root"
 
 informat="amoreI_neut-run%d.root"
