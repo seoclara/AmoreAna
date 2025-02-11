@@ -41,19 +41,6 @@ else()
 endif()
 #
 #----------------------------------------------------------------------------
-<<<<<<< HEAD
-# Check SIMOUT_PATH environment variables which are need to configure run scripts.
-#----------------------------------------------------------------------------
-#if(NOT DEFINED ENV{SIMOUT_PATH})
-#message(SEND_ERROR "Environment variable SIMOUT_PATH is not defined. Configure will not make progress")
-#endif()
-
-#set(SIMOUT_PATH $ENV{SIMOUT_PATH})
-set(SIMOUT_PATH ${PROJECT_SOURCE_DIR})
-
-#----------------------------------------------------------------------------
-=======
->>>>>>> 7b043bf7fd951d76d6764af728fff129fa6483a6
 # Add variables for run scripts
 #----------------------------------------------------------------------------
 SET(NUM_PER_TASK "100" CACHE STRING "Number of files to process per each task")
