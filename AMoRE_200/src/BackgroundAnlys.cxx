@@ -40,7 +40,7 @@ void BackgroundAnlys(Int_t runno, const char *path, const char *filenameformat, 
 
 	fInput->SetBranchAddress("EVENTINFO", &readInfo);
 	fInput->SetBranchAddress("PRIMARY", &readPrimary);
-	fInput->SetBranchAddress("TRACK", &readTrack);
+	//fInput->SetBranchAddress("TRACK", &readTrack);
 	fInput->SetBranchAddress("STEP", &readStep);
 	fInput->SetBranchAddress("EndTrack", &readEndTrack);
 	Bool_t enableET = (fInput->GetBranch("EndTrack") != nullptr);
@@ -104,6 +104,7 @@ void BackgroundAnlys(Int_t runno, const char *path, const char *filenameformat, 
 		}
 		entryID = i - entrycnt + curec;
 
+		/*
 		///// TRACK CHECK ----------------------------------
 		bool skipThisEvt = false;
 		Int_t TotTrackN = tclTrack->GetEntriesFast();
@@ -125,6 +126,7 @@ void BackgroundAnlys(Int_t runno, const char *path, const char *filenameformat, 
 		}
 		if (skipThisEvt)
 			continue;
+			*/
 
 		///// EVENT INFORMATION --------------------------------
 		evt_ID = readInfo->GetEventID();

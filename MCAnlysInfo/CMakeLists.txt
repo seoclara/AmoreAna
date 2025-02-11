@@ -20,13 +20,13 @@ include(${ROOT_USE_FILE})
 # Check dependencies for this project and set include directories and libraries
 #----------------------------------------------------------------------------
 if(DEFINED MCObjs)
-    set(MCObjs_LIBPATH MCObjs)
-    set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
+  set(MCObjs_LIBPATH MCObjs)
+  set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
 elseif(DEFINED ENV{MCOBJS_PATH})
-    set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
-    set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
+  set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
+  set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
 else()
-    message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
+  message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
 endif()
 
 #----------------------------------------------------------------------------

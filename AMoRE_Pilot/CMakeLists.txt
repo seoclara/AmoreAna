@@ -21,33 +21,34 @@ include(${ROOT_USE_FILE})
 # Check dependencies for this project and set include directories and libraries
 #----------------------------------------------------------------------------
 if(DEFINED MCObjs)
-    set(MCObjs_LIBPATH MCObjs)
-    set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
+	set(MCObjs_LIBPATH MCObjs)
+	set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
 elseif(DEFINED ENV{MCOBJS_PATH})
-    set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
-    set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
+	set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
+	set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
 else()
-    message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
+	message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
 endif()
 
 if(DEFINED MCAnlysInfo)
-    set(MCAnlysInfo_LIBPATH MCAnlysInfo)
-    set(MCAnlysInfo_INCLDIR ${MCAnlysInfo_INCLUDE_DIR})
+	set(MCAnlysInfo_LIBPATH MCAnlysInfo)
+	set(MCAnlysInfo_INCLDIR ${MCAnlysInfo_INCLUDE_DIR})
 elseif(DEFINED ENV{MCANLYSINFO_PATH})
-    set(MCAnlysInfo_LIBPATH $ENV{MCANLYSINFO_PATH}/libMCAnlysInfo.so)
-    set(MCAnlysInfo_INCLDIR $ENV{MCANLYSINFO_PATH})
+	set(MCAnlysInfo_LIBPATH $ENV{MCANLYSINFO_PATH}/libMCAnlysInfo.so)
+	set(MCAnlysInfo_INCLDIR $ENV{MCANLYSINFO_PATH})
 else()
-    message(SEND_ERROR "This project cannot be built without MCAnlysInfo library. Please check about this.")
+	message(SEND_ERROR "This project cannot be built without MCAnlysInfo library. Please check about this.")
 endif()
-
+#
 #----------------------------------------------------------------------------
 # Check SIMOUT_PATH environment variables which are need to configure run scripts.
 #----------------------------------------------------------------------------
-if(NOT DEFINED ENV{SIMOUT_PATH})
-  message(SEND_ERROR "Environment variable SIMOUT_PATH is not defined. Configure will not make progress")
-endif()
+#if(NOT DEFINED ENV{SIMOUT_PATH})
+#message(SEND_ERROR "Environment variable SIMOUT_PATH is not defined. Configure will not make progress")
+#endif()
 
-set(SIMOUT_PATH $ENV{SIMOUT_PATH})
+#set(SIMOUT_PATH $ENV{SIMOUT_PATH})
+set(SIMOUT_PATH ${PROJECT_SOURCE_DIR})
 
 #----------------------------------------------------------------------------
 # Add variables for run scripts

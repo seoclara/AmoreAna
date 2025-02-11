@@ -29,11 +29,6 @@ execute_process(
     )
 
 #----------------------------------------------------------------------------
-# Add subdirectory contains analysis codes
-#----------------------------------------------------------------------------
-add_subdirectory(MCAnlysInfo EXCLUDE_FROM_ALL)
-
-#----------------------------------------------------------------------------
 # Setup the main include directories
 #----------------------------------------------------------------------------
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -42,16 +37,17 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Check dependencies for this project and set include directories and libraries
 #----------------------------------------------------------------------------
 if(EXISTS ${PARENT_DIRECTORY}/MCObjs AND DEFINED MCObjs)
-    set(MCObjs_LIBPATH MCObjs)
-    set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
+	set(MCObjs_LIBPATH MCObjs)
+	set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
 elseif(EXISTS ${PROJECT_SOURCE_DIR}/MCObjs)
-    add_subdirectory(MCObjs)
-    add_dependencies(MCAnlysInfo MCObjs)
+	add_subdirectory(MCObjs)
+    add_subdirectory(MCAnlysInfo EXCLUDE_FROM_ALL)
+	add_dependencies(MCAnlysInfo MCObjs)
 elseif(DEFINED ENV{MCOBJS_PATH})
-    set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
-    set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
+	set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
+	set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
 else()
-    message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
+	message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
 endif()
 
 #----------------------------------------------------------------------------
