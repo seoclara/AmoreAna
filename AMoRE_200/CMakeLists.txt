@@ -39,6 +39,7 @@ else()
     message(SEND_ERROR "This project cannot be built without MCAnlysInfo library. Please check about this.")
 endif()
 
+<<<<<<< HEAD
 #----------------------------------------------------------------------------
 # Check SIMOUT_PATH environment variables which are need to configure run scripts.
 #----------------------------------------------------------------------------
@@ -48,6 +49,8 @@ endif()
 
 #set(SIMOUT_PATH $ENV{SIMOUT_PATH})
 set(SIMOUT_PATH ${PROJECT_SOURCE_DIR}/output)
+=======
+>>>>>>> 7b043bf7fd951d76d6764af728fff129fa6483a6
 
 #----------------------------------------------------------------------------
 # Add variables for run scripts

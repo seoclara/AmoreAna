@@ -15,7 +15,7 @@ fi
 numpertask=${NUM_PER_TASK}
 
 workdir="${PROJECT_BINARY_DIR}"
-sourcedir="${SIMOUT_PATH}/internal-bulk"
+sourcedir="${workdir}/internal-bulk"
 datadir="$sourcedir/root"
 
 sname="U238"
