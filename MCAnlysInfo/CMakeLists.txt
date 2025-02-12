@@ -23,7 +23,7 @@ if(DEFINED MCObjs)
     set(MCObjs_LIBPATH MCObjs)
     set(MCObjs_INCLDIR ${MCObjs_INCLUDE_DIR})
 elseif(DEFINED ENV{MCOBJS_PATH})
-    set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.so)
+    set(MCObjs_LIBPATH $ENV{MCOBJS_PATH}/libMCObjs.dylib)
     set(MCObjs_INCLDIR $ENV{MCOBJS_PATH})
 else()
     message(SEND_ERROR "This project cannot be built without MCObjs library. Please check about this.")
@@ -70,7 +70,7 @@ target_include_directories(MCAnlysInfo PUBLIC $ENV{MCOBJS_PATH})
 #----------------------------------------------------------------------------
 set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/include
   CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
-set(${PROJECT_NAME}_LIBRARY ${PROJECT_BINARY_DIR}/lib${PROJECT_NAME}.so
+set(${PROJECT_NAME}_LIBRARY ${PROJECT_BINARY_DIR}/lib${PROJECT_NAME}.dylib
   CACHE INTERNAL "${PROJECT_NAME}: Path to library" FORCE)
 set(${PROJECT_NAME} "Exist!"
   CACHE INTERNAL "${PROJECT_NAME}: Variable for checking dependencies" FORCE)

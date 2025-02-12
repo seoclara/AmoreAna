@@ -71,7 +71,9 @@ ROOT_GENERATE_DICTIONARY(G__MCObjs
 # Add the libraries and link it to the ROOT framework and MCObjs library
 #----------------------------------------------------------------------------
 add_library(MCObjs SHARED ${MCObjs_SOURCES} G__MCObjs.cxx)
+#set_target_properties(MCObjs PROPERTIES SUFFIX ".so")
 target_link_libraries(MCObjs PRIVATE ${ROOT_LIBRARIES})
+
 
 #----------------------------------------------------------------------------
 # Setup global and local include directories for this project
@@ -86,7 +88,7 @@ target_include_directories(MCObjs PUBLIC ${ROOT_INCLUDE_DIRS})
 #----------------------------------------------------------------------------
 set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}
     CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
-set(${PROJECT_NAME}_LIBRARY ${PROJECT_BINARY_DIR}/lib${PROJECT_NAME}.so
+set(${PROJECT_NAME}_LIBRARY ${PROJECT_BINARY_DIR}/lib${PROJECT_NAME}.dylib
     CACHE INTERNAL "${PROJECT_NAME}: Path to library" FORCE)
 set(${PROJECT_NAME} "Exist!"
     CACHE INTERNAL "${PROJECT_NAME}: Variable for checking dependencies" FORCE)
